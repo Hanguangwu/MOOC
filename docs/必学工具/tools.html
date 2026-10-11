@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>实用工具箱 - MOOC</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../../css/chrome-d279d366.css">
+        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../../searchindex-36788591.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc-afb8ca5c.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MOOC</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="实用工具箱"><a class="header" href="#实用工具箱">实用工具箱</a></h1>
+<h2 id="下载工具"><a class="header" href="#下载工具">下载工具</a></h2>
+<ul>
+<li><a href="https://sci-hub.se/">Sci-Hub</a>: Elbakyan 女神向你挥手，旨在打破知识壁垒的革命性网站。</li>
+<li><a href="http://libgen.is/">Library Genesis</a>: 电子书下载网站。</li>
+<li><a href="https://z-library.rs/">Z-library</a>: 电子书下载网站（在 <a href="https://www.torproject.org/">Tor</a> 下运行较佳，<a href="http://loginzlib2vrak5zzpcocc3ouizykn6k5qecgj2tzlnab5wcbqhembyd.onion/">链接</a>）。</li>
+<li><a href="https://z-epub.com/">Z-ePub</a>: ePub 电子书下载网站。</li>
+<li><a href="https://www.pdfdrive.com/">PDF Drive</a>: PDF 电子书搜索引擎。</li>
+<li><a href="https://magazinelib.com/">MagazineLib</a>: PDF 电子杂志下载网站。</li>
+<li><a href="https://bitdownloader.io/">BitDownloader</a>: 油管视频下载器。</li>
+<li><a href="https://www.qbittorrent.org/download.php">qBittorrent</a>: BitTorrent 客户端。</li>
+<li><a href="https://www.utorrent.com">uTorrent</a>: BitTorrent 客户端。</li>
+<li><a href="https://std.samr.gov.cn/">全国标准信息公共服务平台</a>：各类标准查询和下载官方平台。</li>
+<li><a href="http://www.standards.com.cn/">标准知识服务系统</a>：检索与阅读所需标准。</li>
+<li><a href="https://msdn.itellyou.cn/">MSDN,我告诉你</a>: Windows 操作系统镜像下载站，也有许多其他软件的下载。</li>
+</ul>
+<h2 id="设计工具"><a class="header" href="#设计工具">设计工具</a></h2>
+<ul>
+<li><a href="https://excalidraw.com/">excalidraw</a>: 一款手绘风格的绘图工具，非常适合绘制课程报告或者PPT内的示意图。</li>
+<li><a href="https://www.tldraw.com/">tldraw</a>: 一个绘图工具，适合画流程图，架构图等。</li>
+<li><a href="https://app.diagrams.net/">draw.io</a>: 强大简洁的在线的绘图网站，支持流程图，UML图，架构图，原型图等等，支持 Onedrive, Google Drive, Github 导出，同时提供离线客户端。</li>
+<li><a href="https://www.origamiway.com/paper-folding-crafts-step-by-step.shtml">origamiway</a>: 手把手教你怎么折纸。</li>
+<li><a href="https://www.thingiverse.com/">thingiverse</a>: 囊括各类 2D/3D 设计资源，其 STL 文件下载可直接 3D 打印。</li>
+<li><a href="https://www.iconfont.cn/">iconfont</a>: 国内最大的图标和插画资源库，可用于开发或绘制系统架构图。</li>
+<li><a href="https://www.turbosquid.com/">turbosquid</a>: 可以购买各式各样的模型。</li>
+<li><a href="https://www.flaticon.com/">flaticon</a>: 可下载免费且高质量的图标。</li>
+<li><a href="http://bzdt.ch.mnr.gov.cn/">标准地图服务系统</a>: 可以下载官方标准地图。</li>
+<li><a href="https://plantuml.com/zh/">PlantUML</a>: 可以使用代码快速编写 UML 图。</li>
+</ul>
+<h2 id="编程相关"><a class="header" href="#编程相关">编程相关</a></h2>
+<ul>
+<li><a href="http://www.sqlfiddle.com/">sqlfiddle</a>: 一个简易的在线 SQL Playground。</li>
+<li><a href="https://sqlzoo.net/wiki/SQL_Tutorial">sqlzoo</a>：在线练习 sql 语句。</li>
+<li><a href="https://sqlable.com">sqlable</a>：一个 SQL 工具网站（格式化器、验证器、生成器，SQL Playground）。</li>
+<li><a href="https://godbolt.org/">godbolt</a>: 非常方便的编译器探索工具。你可以写一段 C/C++ 代码，选择一款编译器，然后便可以观察生成的具体汇编代码。</li>
+<li><a href="https://explainshell.com/">explainshell</a>: 你是否曾为一段 shell 代码的具体含义感到困扰？manpage 看半天还是不明所以？试试这个网站！</li>
+<li><a href="https://regex101.com/">regex101</a>: 正则表达式调试网站，支持各种编程语言的匹配标准。</li>
+<li><a href="https://www.typingtom.com/lessons">typingtom</a>: 针对程序员的打字练习/测速网站。</li>
+<li><a href="https://github.com/wg/wrk">wrk</a>: 网站压测工具。</li>
+<li><a href="https://www.gbmb.org/">gbmb</a>: 数据单位转换。</li>
+<li><a href="https://tools.fun/">tools</a>: 在线工具合集。</li>
+<li><a href="https://github1s.com/">github1s</a>: 用网页版 VS Code 在线阅读 GitHub 代码。</li>
+<li><a href="https://visualgo.net/en">visualgo</a>: 算法可视化网站。</li>
+<li><a href="http://www.rmboot.com/">DataStructureVisual</a>: 数据结构可视化网站。</li>
+<li><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">Data Structure Visualizations</a>: 数据结构与算法的可视化网站。</li>
+<li><a href="https://learngitbranching.js.org/?locale=zh_CN">learngitbranching</a>: 可视化学习 git。</li>
+<li><a href="https://unicode-table.com/en/">UnicodeCharacter</a>: Unicode 字符集网站。</li>
+<li><a href="https://extendsclass.com/regex-tester.html">cyrilex</a>: 一个用于测试和可视化正则表达式的网站，支持各种编程语言标准。</li>
+<li><a href="https://softwium.com/mockium/">mockium</a>: 生成测试数据的平台。</li>
+</ul>
+<h2 id="学习网站"><a class="header" href="#学习网站">学习网站</a></h2>
+<ul>
+<li><a href="https://hepsoftwarefoundation.org/training/curriculum.html">HFS</a>: 各类软件教程。</li>
+<li><a href="https://www.shadertoy.com/">Shadertoy</a>: 编写各式各样的 shader。</li>
+<li><a href="https://conanhujinming.github.io/comments-for-awesome-courses/">comments-for-awesome-courses</a>: 名校公开课评价网。</li>
+<li><a href="https://codetop.cc/home">codetop</a>: 企业题库。</li>
+<li><a href="https://github.com/Developer-Y/cs-video-courses">cs-video-courses</a>: 带有视频讲座的计算机科学课程列表。</li>
+<li><a href="https://elixir.bootlin.com/linux/v2.6.39.4/source/include/linux">bootlin</a>: 在线阅读 Linux 源码。</li>
+<li><a href="https://github.com/tianyilt/ecnu-PGCourseShare">ecust-CourseShare</a>: 华东师范大学研究生课程攻略共享计划。</li>
+<li><a href="https://github.com/PKUanonym/REKCARC-TSC-UHT">REKCARC-TSC-UHT</a>: 清华大学计算机系课程攻略。</li>
+<li><a href="https://github.com/oneman233/seu-master">seu-master</a>: 东南大学研究生课程资料整理。</li>
+<li><a href="https://www.runoob.com/">菜鸟教程</a>: 计算机相关知识的简要的教程。</li>
+<li><a href="https://book.bsdcn.org/">FreeBSD 从入门到跑路</a>: 一本 FreeBSD 的中文教程。</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn">MDN Web Docs</a>: MDN 网络开发入门手册。</li>
+<li><a href="https://www.hello-algo.com/">Hello 算法</a>: 动画图解、能运行、可提问的数据结构与算法快速入门教程。</li>
+</ul>
+<h2 id="百科网站词典性质的网站"><a class="header" href="#百科网站词典性质的网站">百科网站/词典性质的网站</a></h2>
+<ul>
+<li><a href="https://wiki.osdev.org/Main_Page">os-wiki</a>: 操作系统技术资源百科全书。</li>
+<li><a href="https://docs.freebsd.org/en/">FreeBSD Documentation</a>: FreeBSD 官方文档。</li>
+<li><a href="https://docs.python.org/zh-cn/3/">Python3 Documentation</a>: Python3 官方中文文档。</li>
+<li><a href="https://en.cppreference.com/w/">C++ Reference</a>: C++ 参考手册。</li>
+<li><a href="https://oi-wiki.org/">OI Wiki</a>: 编程竞赛知识整合站点。</li>
+<li><a href="https://ctf-wiki.org/">CTF Wiki</a>：网络安全竞赛相关知识与工具的整合站点。</li>
+<li><a href="https://learn.microsoft.com/zh-cn/">Microsoft Learn</a>: 微软官方的学习平台，包含了绝大多数微软产品的文档。</li>
+<li><a href="https://wiki.archlinux.org/">Arch Wiki</a>: 专为 Arch Linux 而写的 Wiki，包含了大量 Linux 相关的知识。</li>
+<li><a href="https://wiki.qt.io/Main">Qt Wiki</a>: Qt 官方 Wiki。</li>
+<li><a href="https://opencv.apachecn.org/#/">OpenCV 中文文档</a>: OpenCV 的社区版中文文档。</li>
+<li><a href="https://docs.npmjs.com/">npm Docs</a>: npm 官方文档。</li>
+<li><a href="https://roadmap.sh/">developer-roadmap</a>：帮助开发者了解学习路径并在职业生涯中不断成长。</li>
+</ul>
+<h2 id="交流平台"><a class="header" href="#交流平台">交流平台</a></h2>
+<ul>
+<li><a href="https://github.com/">GitHub</a>: 许多开源项目的托管平台，也是许多开源项目的主要交流平台，通过查看 issue 可以解决许多问题。</li>
+<li><a href="https://stackexchange.com/">StackExchange</a>: Stack Exchange 是由 181 个问答社区组成（其中包括 Stack Overflow）的编程社区。</li>
+<li><a href="https://stackoverflow.com/">StackOverflow</a>: Stack Overflow 是一个与程序相关的 IT 技术问答网站。</li>
+<li><a href="https://gitee.com/">Gitee</a>: 一个类似于 GitHub 的代码托管平台，可以在对应项目的 issue 里查找一些常见问题的解答。</li>
+<li><a href="https://www.zhihu.com/">知乎</a>: 一个类似于 Quora 的问答社区，可以在其中提问，一些问答包含有计算机的知识。</li>
+<li><a href="https://www.cnblogs.com/">博客园</a>: 一个面向开发者的知识分享社区，拥有一些常见问题的博客，正确率不能保证，请谨慎使用。</li>
+<li><a href="https://blog.csdn.net/">CSDN</a>: 拥有一些常见问题的博客，正确率不能保证，请谨慎使用。</li>
+</ul>
+<h2 id="杂项"><a class="header" href="#杂项">杂项</a></h2>
+<ul>
+<li><a href="https://tophub.today/">tophub</a>: 新闻热榜合集（综合了知乎、微博、百度、微信等）。</li>
+<li><a href="https://feedly.com/">feedly</a>: 著名的 RSS 订阅源阅读器。</li>
+<li><a href="https://www.speedtest.net/zh-Hans">speedtest</a>: 在线网络测速网站。</li>
+<li><a href="https://github.com/public-apis/public-apis">public-apis</a>: 公共 API 合集列表。</li>
+<li><a href="https://zh.numberempire.com/derivativecalculator.php">numberempire</a>: 函数求导工具。</li>
+<li><a href="https://sustech-application.com/#/grad-application/computer-science-and-engineering/README">sustech-application</a>: 南方科技大学经验分享网。</li>
+<li><a href="https://vim-adventures.com/">vim-adventures</a>: 一款基于 vim 键盘快捷键的在线游戏。</li>
+<li><a href="https://vimsnake.com/">vimsnake</a>: 利用 vim 玩贪吃蛇。</li>
+<li><a href="https://www.keybr.com/">keybr</a>: 学习盲打的网站。</li>
+<li><a href="https://cpp.libhunt.com/">Awesome C++</a>: 很棒的 C/C++ 框架、库、资源精选列表。</li>
+<li><a href="https://hellogithub.com/">HelloGitHub</a>: 分享 GitHub 上有趣、入门级的开源项目。</li>
+<li><a href="https://github.com/DEAKSoftware/Synergy-Binaries">Synergy</a>: 一套键鼠能控制多台电脑。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../docs/必学工具/workflow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../../docs/必学工具/thesis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../docs/必学工具/workflow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../../docs/必学工具/thesis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../../mark-09e88c2c.min.js"></script>
+        <script src="../../searcher-09f2665d.js"></script>
+
+        <script src="../../clipboard-1626706a.min.js"></script>
+        <script src="../../highlight-abc7f01d.js"></script>
+        <script src="../../book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
