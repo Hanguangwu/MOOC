@@ -26,6 +26,9 @@ jobs:
           use-katex: true
           katex-version: "latest"
 
+      - name: Generate SUMMARY.md
+        run: python3 scripts/gen_summary.py
+
       - run: mdbook build
 
       - name: Deploy
@@ -34,7 +37,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
-
-
-
-
