@@ -9,11 +9,36 @@ Documentation layout
 * ``src/docs/*.en.md`` -- English translations, intentionally ignored by the
   generator because this book only ships the Chinese edition.
 
-The generated table of contents follows the ordering of the upstream
-*CS 自学指南* (cs-self-learning) project: the front matter opens the book, then
-every subject area becomes an mdbook "part".  Inside a folder, files listed in
-``FILE_ORDER`` keep their hand-picked order and any newly added file is appended
-automatically (sorted) so a page is never silently dropped.
+Generated format (compact, foldable)
+------------------------------------
+The top-level subject folders are rendered as collapsible mdbook "parts"
+(``- [组名]()`` with indented children), instead of ``# 组名`` headings:
+
+    # Summary
+
+    [前言](前言.md)
+    [如何使用这本书](docs/使用指南.md)
+    [一个仅供参考的 CS 学习规划](docs/CS学习规划.md)
+
+    - [必学工具]()
+      - [翻墙](docs/必学工具/翻墙.md)
+      ...
+      - [好书推荐](docs/好书推荐.md)
+
+    - [数学]()
+      ...
+
+Subject order follows the upstream *CS 自学指南* (cs-self-learning) project
+(``STRUCTURE``).  Inside a folder:
+
+* files listed in ``FILE_ORDER`` keep their hand-picked order;
+* any newly added file is appended automatically (sorted) so a page is never
+  silently dropped -- dropping a file into a folder is all it takes;
+* sub-folders listed in ``SUBGROUPS`` are rendered as nested collapsible
+  groups, and unlisted sub-folders with content are picked up automatically.
+
+Subject folders that are not (yet) listed in ``STRUCTURE`` are appended at the
+end of the book as their own group, so nothing new is ever missed.
 
 Usage::
 
@@ -37,7 +62,7 @@ OUTPUT = SRC / "SUMMARY.md"
 # Configuration
 # ---------------------------------------------------------------------------
 
-# Unnumbered prefix pages that open the book, in order.
+# Unnumbered prefix pages that open the book, in order (relative to ``src/``).
 PREFIX = [
     "前言.md",
     "docs/使用指南.md",
@@ -49,37 +74,39 @@ TITLE_OVERRIDES = {
     "docs/必学工具/workflow.md": "日常学习工作流",
 }
 
-# Ordered top-level structure.  Each entry is one of:
-#   ("part",    "<display title>", "<dir under src/docs>")
-#   ("chapter", "<display title or None>", "<path relative to src>")
-# ``None`` means "use the file's first level-1 heading".
+# Ordered top-level structure: (display title, dir under ``src/docs``).
+# ``display`` is what shows in the sidebar; ``dir_key`` is the real folder.
 STRUCTURE = [
-    ("part", "必学工具", "必学工具"),
-    ("chapter", None, "docs/好书推荐.md"),
-    ("part", "数学", "数学"),
-    ("part", "编程入门", "编程入门"),
-    ("part", "电子基础", "电子基础"),
-    ("part", "数据结构与算法", "数据结构与算法"),
-    ("part", "软件工程", "软件工程"),
-    ("part", "计算机系统基础", "计算机系统基础"),
-    ("part", "体系结构", "体系结构"),
-    ("part", "操作系统", "操作系统"),
-    ("part", "并行与分布式系统", "并行与分布式系统"),
-    ("part", "系统安全", "系统安全"),
-    ("part", "计算机网络", "计算机网络"),
-    ("part", "数据库系统", "数据库系统"),
-    ("part", "编译原理", "编译原理"),
-    ("part", "编程语言设计与分析", "编程语言设计与分析"),
-    ("part", "计算机图形学", "计算机图形学"),
-    ("part", "Web开发", "Web开发"),
-    ("part", "数据科学", "数据科学"),
-    ("part", "人工智能", "人工智能"),
-    ("part", "机器学习", "机器学习"),
-    ("part", "机器学习系统", "机器学习系统"),
-    ("part", "深度学习", "深度学习"),
-    ("part", "深度生成模型", "深度生成模型"),
-    ("part", "机器学习进阶", "机器学习进阶"),
+    ("必学工具", "必学工具"),
+    ("数学", "数学"),
+    ("编程入门", "编程入门"),
+    ("电子基础", "电子基础"),
+    ("数据结构与算法", "数据结构与算法"),
+    ("软件工程", "软件工程"),
+    ("计算机系统基础", "计算机系统基础"),
+    ("计算机体系结构", "体系结构"),
+    ("操作系统", "操作系统"),
+    ("并行与分布式系统", "并行与分布式系统"),
+    ("系统安全", "系统安全"),
+    ("计算机网络", "计算机网络"),
+    ("数据库系统", "数据库系统"),
+    ("编译原理", "编译原理"),
+    ("编程语言设计与分析", "编程语言设计与分析"),
+    ("计算机图形学", "计算机图形学"),
+    ("Web开发", "Web开发"),
+    ("数据科学", "数据科学"),
+    ("人工智能", "人工智能"),
+    ("机器学习", "机器学习"),
+    ("机器学习系统", "机器学习系统"),
+    ("深度学习", "深度学习"),
+    ("深度生成模型", "深度生成模型"),
+    ("机器学习进阶", "机器学习进阶"),
 ]
+
+# Extra pages appended at the end of a part's child list (relative to ``src/``).
+GROUP_EXTRA = {
+    "必学工具": ["docs/好书推荐.md"],
+}
 
 # Hand-picked file order (by file name) for folders/sub-folders.
 FILE_ORDER = {
@@ -212,67 +239,76 @@ def order_files(dir_key: str, names: list[str]) -> list[str]:
     return ordered
 
 
-def emit_dir(dir_key: str) -> list[str]:
-    """Emit the chapters (and nested groups) for a folder under src/docs."""
-    out: list[str] = []
+def part_lines(display: str, dir_key: str) -> list[str]:
+    """One collapsible part: ``- [display]()`` header + 2-space children.
+
+    Direct pages come first (in ``FILE_ORDER`` order, new files appended
+    sorted), then nested sub-groups, then any extra pages such as
+    ``好书推荐``.
+    """
+    out = [f"- [{display}]()"]
     root = DOCS / dir_key
 
-    for name in order_files(dir_key, md_files(root)):
-        rel = f"docs/{dir_key}/{name}"
-        out.append(f"- [{title_for(rel)}]({link(rel)})")
-
-    declared = {sub for _, sub in SUBGROUPS.get(dir_key, [])}
-    extra = [
-        p.name
-        for p in sorted(root.iterdir())
-        if p.is_dir() and p.name not in declared and md_files(p)
-    ] if root.is_dir() else []
-    groups = SUBGROUPS.get(dir_key, []) + [(d, d) for d in extra]
-
-    for display, sub in groups:
-        sub_files = order_files(f"{dir_key}/{sub}", md_files(root / sub))
-        if not sub_files:
-            continue
-        out.append(f"- [{display}]()")
-        for name in sub_files:
-            rel = f"docs/{dir_key}/{sub}/{name}"
+    if root.is_dir():
+        for name in order_files(dir_key, md_files(root)):
+            rel = f"docs/{dir_key}/{name}"
             out.append(f"  - [{title_for(rel)}]({link(rel)})")
+
+        declared = {sub for _, sub in SUBGROUPS.get(dir_key, [])}
+        extra = sorted(
+            p.name
+            for p in root.iterdir()
+            if p.is_dir() and p.name not in declared and md_files(p)
+        )
+        for sub_display, sub in SUBGROUPS.get(dir_key, []) + [(d, d) for d in extra]:
+            sub_files = order_files(f"{dir_key}/{sub}", md_files(root / sub))
+            if not sub_files:
+                continue
+            out.append(f"  - [{sub_display}]()")
+            for name in sub_files:
+                rel = f"docs/{dir_key}/{sub}/{name}"
+                out.append(f"    - [{title_for(rel)}]({link(rel)})")
+
+    for rel in GROUP_EXTRA.get(dir_key, []):
+        out.append(f"  - [{title_for(rel)}]({link(rel)})")
     return out
 
 
 def generate() -> str:
-    lines = ["# Summary", ""]
+    blocks: list[list[str]] = []
 
-    for rel in PREFIX:
-        lines.append(f"[{title_for(rel)}]({link(rel)})")
-        lines.append("")
+    # Front matter: contiguous plain links (no blank lines between them).
+    blocks.append([f"[{title_for(rel)}]({link(rel)})" for rel in PREFIX])
 
     used_dirs: set[str] = set()
-    for node in STRUCTURE:
-        if node[0] == "part":
-            _, display, dir_key = node
-            used_dirs.add(dir_key)
-            lines.append(f"# {display}")
-            lines.append("")
-            lines.extend(emit_dir(dir_key))
-            lines.append("")
-        else:  # "chapter"
-            _, display, rel = node
-            lines.append(f"- [{display or title_for(rel)}]({link(rel)})")
-            lines.append("")
+    for display, dir_key in STRUCTURE:
+        used_dirs.add(dir_key)
+        blocks.append(part_lines(display, dir_key))
 
     # Safety net: never drop a subject folder that is not yet configured.
     for p in sorted(DOCS.iterdir()):
         if p.is_dir() and p.name not in used_dirs and md_files(p):
-            lines.append(f"# {p.name}")
-            lines.append("")
-            lines.extend(emit_dir(p.name))
-            lines.append("")
+            blocks.append(part_lines(p.name, p.name))
+            used_dirs.add(p.name)
 
-    # Collapse trailing blank lines and always end with a single newline.
-    while lines and lines[-1] == "":
-        lines.pop()
-    return "\n".join(lines) + "\n"
+    # Safety net: never drop a loose .md file directly under src/docs/.
+    known = set(PREFIX) | {rel for rels in GROUP_EXTRA.values() for rel in rels}
+    loose = sorted(
+        p.name
+        for p in DOCS.iterdir()
+        if p.is_file()
+        and p.suffix == ".md"
+        and not p.name.endswith(".en.md")
+        and f"docs/{p.name}" not in known
+    )
+    if loose:
+        blocks.append(
+            [f"- [{title_for(f'docs/{name}')}]({link(f'docs/{name}')})" for name in loose]
+        )
+
+    # Compact style: one blank line between blocks, no trailing blank line.
+    body = "\n\n".join("\n".join(b) for b in blocks)
+    return f"# Summary\n\n{body}\n"
 
 
 def main() -> int:
